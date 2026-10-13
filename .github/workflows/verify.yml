@@ -1,0 +1,20 @@
+name: Verify ATGC Total TM
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Run self-reconstruction
+      run: |
+        chmod +x solution_atgc_self_2KB.sh
+        sh solution_atgc_self_2KB.sh solution_atgc_self_2KB.sh
+        echo "ATGC total TM self-reconstruction verified."
